@@ -1,41 +1,67 @@
-function playRound() {
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
+const result = document.querySelector('.result');
 
-    const playerSelection = prompt("Select 'rock', 'paper' or 'scissor' ");
-    const computerSelection = computerPlay();
-    let count = 0;
-   
+
+rock.addEventListener('click', () => {
+    
+    playRound(rock.textContent.toLowerCase());
+});
+
+paper.addEventListener('click', () => {
+    
+    playRound(paper.textContent.toLowerCase());
+});
+
+scissor.addEventListener('click', () => {
+    
+    playRound(scissor.textContent.toLowerCase());
+});
+
+function playRound(playerSelection) {
+
+     const computerSelection = computerPlay();
+     let resultText = 'Go!';
+    
    if(playerSelection.toLowerCase() == 'rock') {
         if(computerSelection == 'rock') {
-            console.log(`You Draw, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Draw, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'paper')  {
-            console.log(`You Loose, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Loose, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'scissor') {
-            console.log(`You Win, ${playerSelection} vs ${computerSelection}`);
-            count = 1;
+            resultText = `You WIN, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         }
     }else if(playerSelection.toLowerCase() == 'paper') {
         if(computerSelection == 'rock') {
-            console.log(`You Win, ${playerSelection} vs ${computerSelection}`);
-            count = 1;
+            resultText = `You WIN, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'paper')  {
-            console.log(`You Draw, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Draw, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'scissor') {
-            console.log(`You Loose, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Loose, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         }
     } else if(playerSelection.toLowerCase() == 'scissor') {
         if(computerSelection == 'rock') {
-            console.log(`You Loose, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Loose, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'paper')  {
-            console.log(`You Win, ${playerSelection} vs ${computerSelection}`);
-            count = 1;
+            resultText = `You WIN, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         } else if(computerSelection == 'scissor') {
-            console.log(`You Draw, ${playerSelection} vs ${computerSelection}`);
+            resultText = `You Draw, ${playerSelection} vs ${computerSelection}`;
+            console.log(resultText);
         }
     } else {
-        console.log('wrong input');
+        resultText = 'wrong input';
+        console.log(resultText);
     }
-
-    return count;
+    result.textContent = resultText;
 }
 
 function computerPlay() {
@@ -44,19 +70,3 @@ function computerPlay() {
 
     return choice[random];
 }
-
-function game() {
-    let count = 0;
-    for(let i=1; i<=5; i++) {
-        count += playRound();
-    }
-
-    if(count >2) {
-        console.log(`You Win : ${count} times`);
-    }else {
-        console.log('You Loose');
-    }
-    
-}
-
-game();
